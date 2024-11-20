@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+using System;
 
 public class ScoreManager : Singleton<ScoreManager>
 {
-    [SerializeField] GameObject gameEndScreen;
-    [SerializeField] TMP_Text killCountText;
-    [SerializeField] TMP_Text coinsCountText;
-
     int coinsCollected;
     int enemiesKilled;
+
+    public event Action<int, int> OnGameOver;
+
+    public void ResetGame()
+    {
+        coinsCollected = 0;
+        enemiesKilled = 0;
+    }
 
     public void OnCollectedCoin()
     {
@@ -25,13 +25,6 @@ public class ScoreManager : Singleton<ScoreManager>
 
     public void GameOver()
     {
-        gameEndScreen.SetActive(true);
-        killCountText.text = enemiesKilled.ToString();
-        coinsCountText.text = coinsCollected.ToString();
-    }
-
-    public void Replay()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        OnGameOver?.Invoke(enemiesKilled, coinsCollected);
     }
 }

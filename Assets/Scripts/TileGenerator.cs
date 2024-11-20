@@ -33,7 +33,7 @@ public class TileGenerator : MonoBehaviour
         {
             currentCenterTile = newCenterTile;
             UpdateGrid();
-            Debug.Log("BuildNavmesh");
+            //Debug.Log("BuildNavmesh");
             //navMeshSurface.BuildNavMesh();
 
             //navMeshSurface.UpdateNavMesh(navMeshSurface.navMeshData);
@@ -50,7 +50,7 @@ public class TileGenerator : MonoBehaviour
                 SpawnTile(tilePos);
             }
         }
-        Debug.Log("BuildNavmesh");
+        //Debug.Log("BuildNavmesh");
         //navMeshSurface.BuildNavMesh();
     }
 
